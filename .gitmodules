@@ -1,0 +1,3 @@
+[submodule "leaflet-velocity"]
+	path = leaflet-velocity
+	url = git@github.com:douglaskchen/leaflet-velocity.git

@@ -1,4 +1,4 @@
-Metadata-Version: 2.2
+Metadata-Version: 2.1
 Name: opensky-api
 Version: 1.3.0
 Summary: The official OpenSky Network API
@@ -8,6 +8,7 @@ Author-email: contact@opensky-network.org
 Maintainer: Markus Fuchs
 Maintainer-email: fuchs@opensky-network.org
 License: GPL
+Platform: UNKNOWN
 Classifier: Development Status :: 5 - Stable
 Classifier: Intended Audience :: Developers
 Classifier: Topic :: Scientific/Engineering :: Interface Engine/Protocol Translator
@@ -17,19 +18,6 @@ Classifier: Programming Language :: Python :: 2.7
 Classifier: Programming Language :: Python :: 3
 Classifier: Programming Language :: Python :: 3.5
 Requires: requests
-Requires-Dist: requests
-Dynamic: author
-Dynamic: author-email
-Dynamic: classifier
-Dynamic: description
-Dynamic: home-page
-Dynamic: keywords
-Dynamic: license
-Dynamic: maintainer
-Dynamic: maintainer-email
-Dynamic: requires
-Dynamic: requires-dist
-Dynamic: summary
 
 # The official OpenSky Network API
 
@@ -141,3 +129,5 @@ java -Dhttp.proxyHost=10.0.0.10 -Dhttp.proxyPort=9090 ...
 
 * [API documentation](https://opensky-network.org/apidoc)
 * [OpenSky Forum](https://opensky-network.org/forum)
+
+
