@@ -47,7 +47,10 @@ function initMap() {
   var mapStuff = initMap();
   var layerControl = mapStuff.layerControl;
 
-  $.getJSON("./leaflet-velocity/demo/wind-global.json",function(data) {
+  // $.getJSON("./leaflet-velocity/demo/wind-global.json",function(data)
+    $.getJSON("cleaned_wind.json",function(data)
+    {
+      console.log("loaded!!!!!")
     var velocityLayer = L.velocityLayer({
       displayValues: true,
       displayOptions: {
@@ -60,4 +63,7 @@ function initMap() {
     });
   
     layerControl.addOverlay(velocityLayer, "Wind - Global");
-  });
+  })
+  // .fail(function(jqxhr, textStatus, error) {
+  //   console.error("Request Failed: " + textStatus + ", " + error);})
+    ;
