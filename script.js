@@ -48,10 +48,10 @@ function initMap() {
   var layerControl = mapStuff.layerControl;
 
   // $.getJSON("./leaflet-velocity/demo/wind-global.json",function(data)
-    $.getJSON("cleaned_wind.json",function(data)
+    $.getJSON("data.json",function(data)
     {
       console.log("loaded!!!!!")
-    var velocityLayer = L.velocityLayer({
+      var velocityLayer = L.velocityLayer({
       displayValues: true,
       displayOptions: {
         velocityType: "Global Wind",
