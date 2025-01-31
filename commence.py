@@ -36,15 +36,15 @@ def main():
     get_wind_data_script = "/home/douglas/repos/FlyWind/getwinddata.py"
 
     # Run the Python scripts
-    # run_python_script(get_wind_data_script)
-    # run_python_script(get_aircraft_data_script)
+    run_python_script(get_wind_data_script)
+    run_python_script(get_aircraft_data_script)
 
     # Start the HTTP server
     http_server_process = start_http_server(port=8000, directory="/home/douglas/repos/FlyWind")
 
-    # thread = threading.Thread(target=update_aircraft_data)
-    # thread.daemon = True  # Daemonize the thread to ensure it exits when the main program exits
-    # thread.start()
+    thread = threading.Thread(target=update_aircraft_data)
+    thread.daemon = True  # Daemonize the thread to ensure it exits when the main program exits
+    thread.start()
 
     try:
         # Keep the script running

@@ -20,14 +20,27 @@ function initMap() {
   layerControl.addTo(map);
   map.setView([43.68, -79.64], 13);
 
+  var markerLayer = L.layerGroup().addTo(map);
+
+
   return {
     map: map,
-    layerControl: layerControl
+    layerControl: layerControl,
+    markerLayer: markerLayer
   };
 }
 
 var mapStuff = initMap();
+var map = mapStuff.map;
 var layerControl = mapStuff.layerControl;
+var markerLayer = mapStuff.markerLayer;
+
+var planeIcon = L.icon({
+  iconUrl: 'planeicon.png', // Path to your custom icon
+  iconSize: [33, 20], // Size of the icon (width, height)
+  iconAnchor: [16, 10], // Point of the icon that corresponds to the marker's location
+  popupAnchor: [0, -10] // Point from which the popup should open relative to the iconAnchor
+});
 
 $.getJSON("winddata.json", function (data) {
   var velocityLayer = L.velocityLayer({
@@ -58,9 +71,22 @@ function getaircraftdata() {
 
     var loc = window.location.pathname;
     console.log(loc);
+
+    markerLayer.clearLayers();
+    // Add new markers for each aircraft
+    data.forEach(function (aircraft) {
+      var lat = aircraft.latitude;
+      var lng = aircraft.longitude;
+      var callsign = aircraft.callsign;
+
+      if (lat && lng) {
+        var marker = L.marker([lat, lng], { icon: planeIcon, rotationAngle: aircraft.true_track - 45 }).addTo(markerLayer);
+        marker.bindPopup(`Callsign: ${callsign}`).openPopup();
+      }
+    });
   });
 }
 
-
 getaircraftdata();
 setInterval(getaircraftdata, 10000)// 10 seconds in milliseconds
+layerControl.addOverlay(markerLayer, "Aircraft Markers");
