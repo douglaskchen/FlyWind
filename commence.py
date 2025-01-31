@@ -36,15 +36,15 @@ def main():
     get_wind_data_script = "/home/douglas/repos/FlyWind/getwinddata.py"
 
     # Run the Python scripts
-    run_python_script(get_wind_data_script)
-    run_python_script(get_aircraft_data_script)
+    # run_python_script(get_wind_data_script)
+    # run_python_script(get_aircraft_data_script)
 
     # Start the HTTP server
     http_server_process = start_http_server(port=8000, directory="/home/douglas/repos/FlyWind")
 
-    thread = threading.Thread(target=update_aircraft_data)
-    thread.daemon = True  # Daemonize the thread to ensure it exits when the main program exits
-    thread.start()
+    # thread = threading.Thread(target=update_aircraft_data)
+    # thread.daemon = True  # Daemonize the thread to ensure it exits when the main program exits
+    # thread.start()
 
     try:
         # Keep the script running
@@ -58,3 +58,28 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+
+
+# import os
+# print("Current Working Directory:", os.getcwd())
+
+# import http.server
+# import socketserver
+
+# class CustomHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
+#     def end_headers(self):
+#         self.send_cache_headers()
+#         super().end_headers()
+
+#     def send_cache_headers(self):
+#         self.send_header("Cache-Control", "no-store, no-cache, must-revalidate, post-check=0, pre-check=0")
+#         self.send_header("Pragma", "no-cache")
+
+# PORT = 3000
+
+# Handler = CustomHTTPRequestHandler
+
+# with socketserver.TCPServer(("", PORT), Handler) as httpd:
+#     print(f"Serving at port {PORT}")
+#     httpd.serve_forever()
