@@ -1,20 +1,4 @@
-import data from "./sample.json" with { type: 'json' };
-console.log(data);
-
-
-let onething = data[0];
-console.log(onething);
-
-console.log(onething.callsign);
-
-var loc = window.location.pathname;
-console.log(loc);
-
-
-
-
-
-
+// LEAFLET + LEAFLET VELOCITY PLUGIN
 function initMap() {
     var World = L.tileLayer(
         'https://tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -42,15 +26,11 @@ function initMap() {
     };
   }
   
-
-  
   var mapStuff = initMap();
   var layerControl = mapStuff.layerControl;
 
-  // $.getJSON("./leaflet-velocity/demo/wind-global.json",function(data)
-    $.getJSON("data.json",function(data)
+    $.getJSON("winddata.json",function(data)
     {
-      console.log("loaded!!!!!")
       var velocityLayer = L.velocityLayer({
       displayValues: true,
       displayOptions: {
@@ -62,8 +42,21 @@ function initMap() {
       maxVelocity: 15
     });
   
-    layerControl.addOverlay(velocityLayer, "Wind - Global");
-  })
-  // .fail(function(jqxhr, textStatus, error) {
-  //   console.error("Request Failed: " + textStatus + ", " + error);})
-    ;
+    layerControl.addOverlay(velocityLayer, "Wind Speed/Direction Overlay");
+  });
+// LEAFLET + LEAFLET VELOCITY PLUGIN
+
+
+
+// Update aircraft data
+import data from "./aircraftdata.json" with { type: 'json' };
+console.log(data);
+
+
+let onething = data[0];
+console.log(onething);
+
+console.log(onething.callsign);
+
+var loc = window.location.pathname;
+console.log(loc);
