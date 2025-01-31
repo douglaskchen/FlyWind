@@ -36,7 +36,7 @@ var layerControl = mapStuff.layerControl;
 var markerLayer = mapStuff.markerLayer;
 
 var planeIcon = L.icon({
-  iconUrl: 'planeicon.png', // Path to your custom icon
+  iconUrl: 'planeicon.png', // png is 1616x940
   iconSize: [33, 20], // Size of the icon (width, height)
   iconAnchor: [16, 10], // Point of the icon that corresponds to the marker's location
   popupAnchor: [0, -10] // Point from which the popup should open relative to the iconAnchor
@@ -69,19 +69,24 @@ function getaircraftdata() {
 
     console.log(onething.callsign);
 
-    var loc = window.location.pathname;
-    console.log(loc);
-
     markerLayer.clearLayers();
     // Add new markers for each aircraft
     data.forEach(function (aircraft) {
       var lat = aircraft.latitude;
       var lng = aircraft.longitude;
       var callsign = aircraft.callsign;
+      var true_track = Math.round(aircraft.true_track);
+      var velocity = Math.round(aircraft.velocity * 1.94384);
+      var altitude = aircraft.baro_altitude;
+
+      if (altitude == null)
+        altitude = 0;
+      else
+        altitude = Math.round(altitude * 3.28084);
 
       if (lat && lng) {
         var marker = L.marker([lat, lng], { icon: planeIcon, rotationAngle: aircraft.true_track - 45 }).addTo(markerLayer);
-        marker.bindPopup(`Callsign: ${callsign}`).openPopup();
+        marker.bindPopup(`Callsign: ${callsign} <br> Heading: ${true_track} <br> Speed: ${velocity} kt <br> Altitude: ${altitude} ft`);
       }
     });
   });
